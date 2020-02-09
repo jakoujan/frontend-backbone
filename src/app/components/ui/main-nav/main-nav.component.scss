@@ -1,0 +1,75 @@
+.icon {
+    margin-right: 10px;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+
+
+div.toggler {
+    margin: 0 15px 0 0;
+
+    button {
+        color: #fff;
+        font-size: 25px;
+        padding: 0;
+    }
+
+    
+}
+
+.navbar {
+    z-index: 100;
+}
+
+.navbar-brand {
+    margin: 0 5px;
+
+    span.logo {
+        margin-right: 15px;
+        font-size: 19px;
+    }
+}
+
+.main-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    padding: 63px 0 0 0;
+    color: #fff;
+}
+
+.module-menu {
+    padding: 5px 0 0 10px;
+
+    p {
+        margin-bottom: 10px;
+        font-size: 20px;
+        font-weight: 4 00;
+
+    }
+
+    ul {
+        padding: 0;
+        margin: 0 0 0 20px;
+        list-style: none;
+
+        li {
+            a {
+                color: #fff;
+                font-size: 16px;
+                margin: 10px;
+                font-weight: 300;
+                display: block;
+            }
+
+            a:hover {
+                color: #d2d2d2;
+                text-decoration: none;
+            }
+        }
+    }
+}
