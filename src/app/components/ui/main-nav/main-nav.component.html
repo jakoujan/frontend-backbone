@@ -14,10 +14,6 @@
                 <li class="navbar-text">
                     {{ user | user }}
                 </li>
-                <!--li class="nav-item">
-                    <a class="nav-link" (click)="gotoModule('configuration')"><span class="fas fa-cog"></span>
-                        Configuración</a>
-                </li-->
                 <li class="nav-item">
                     <a class="nav-link" (click)="dashboard()"><span class="fas fa-chart-line fa-lg"></span></a>
                 </li>
@@ -35,15 +31,13 @@
     </div>
     <nav [ngbCollapse]="isMenuHidden" class="main-menu navbar-dark bg-dark">
         <div class="module-menu" *ngFor="let module of modules">
-            <p>{{ module.title }}</p>
-            <ul>
-                <li *ngFor="let submodule of module.submodules"><a [routerLink]="submodule.uri"
-                        routerLinkActive="router-link-active">{{ submodule.name }}</a></li>
+            <p (click)="openModule(module)" [ngClass]="{active: module.opened}">{{ module.title }}</p>
+            <ul [hidden]="!module.opened">
+                <li *ngFor="let submodule of module.submodules"><a (click)="activate(submodule)">{{ submodule.name }}</a></li>
             </ul>
         </div>
     </nav>
 </div>
 <ngx-spinner bdColor="rgba(0,0,0,0.45)" size="medium" color="#fff" type="ball-clip-rotate-multiple"
     [fullScreen]="false">
-    <!--p style="color: white"> Cargando </p-->
 </ngx-spinner>

@@ -23,7 +23,7 @@ export const MODULES: Array<Module> = [
         active: false
       }
     ],
-    active: false
+    opened: false
   },
   {
     title: 'Administración',
@@ -47,7 +47,7 @@ export const MODULES: Array<Module> = [
         active: false
       }
     ],
-    active: false
+    opened: false
   }
 
 ];

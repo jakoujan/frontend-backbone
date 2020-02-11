@@ -14,8 +14,10 @@
     border-bottom: 1px solid #ccc;
     margin: 0 20px 15px 20px;
     padding: 0 0 5px;
+    @media only screen and (max-width: 991px) {
+        margin: 0 0 15px 0;
+    }
 }
 .submodule:last-of-type {
     border-bottom: none;
-    margin: 0 20px 0 20px;
 }

@@ -47,39 +47,41 @@
         </form>
     </div>
     <div class="card-body">
-        <ngb-pagination  class="d-flex justify-content-end" [pageSize]="response.per_page"
+        <ngb-pagination class="d-flex justify-content-end" [pageSize]="response.per_page"
             [collectionSize]="response.total" [(page)]="response.current_page" [maxSize]="5" [rotate]="true"
-            [ellipses]="false" [boundaryLinks]="true" (pageChange)="pageChange($event)"></ngb-pagination >
-        <table class="table table-hover table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Razón social</th>
-                    <th scope="col">R.F.C.</th>
-                    <th scope="col">Contacto</th>
-                    <th scope="col">Correo electrónico</th>
-                    <th scope="col">Telefóno</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let customer of response.data">
-                    <th scope="row">{{ customer.business_name }}</th>
-                    <td>{{ customer.tax_id }}</td>
-                    <td>{{ customer.contact }}</td>
-                    <td>{{ customer.email }}</td>
-                    <td>{{ customer.telephone }}</td>
-                    <td>
-                        <div class="btn-group" role="group" aria-label="Acciones">
-                            <button class="btn btn-sm btn-primary" (click)="openForm(customer, editMovement)"><span
-                                    class="fas fa-edit"></span></button>
-                            <button class="btn btn-sm btn-danger" (click)="delete(customer)"><span
-                                    class="fas fa-trash"></span></button>
-                        </div>
-                    </td>
+            [ellipses]="false" [boundaryLinks]="true" (pageChange)="pageChange($event)"></ngb-pagination>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Razón social</th>
+                        <th scope="col">R.F.C.</th>
+                        <th scope="col">Contacto</th>
+                        <th scope="col">Correo electrónico</th>
+                        <th scope="col">Telefóno</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let customer of response.data">
+                        <th scope="row">{{ customer.business_name }}</th>
+                        <td>{{ customer.tax_id }}</td>
+                        <td>{{ customer.contact }}</td>
+                        <td>{{ customer.email }}</td>
+                        <td>{{ customer.telephone }}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Acciones">
+                                <button class="btn btn-sm btn-primary" (click)="openForm(customer, editMovement)"><span
+                                        class="fas fa-edit"></span></button>
+                                <button class="btn btn-sm btn-danger" (click)="delete(customer)"><span
+                                        class="fas fa-trash"></span></button>
+                            </div>
+                        </td>
 
-                </tr>
-            </tbody>
-        </table>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <ngb-pagination class="d-flex justify-content-end" [pageSize]="response.per_page"
             [collectionSize]="response.total" [(page)]="response.current_page" [maxSize]="5" [rotate]="true"
             [ellipses]="false" [boundaryLinks]="true" (pageChange)="pageChange($event)"></ngb-pagination>

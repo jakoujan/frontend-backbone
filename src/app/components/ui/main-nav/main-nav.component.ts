@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { Module } from "./module";
 import { PersistenceService, StorageType } from 'angular-persistence';
@@ -9,6 +9,7 @@ import { IUser } from 'src/app/interfaces/user';
 import { MODULES } from 'src/app/modules';
 import { IModule } from 'src/app/interfaces/module';
 import { Session } from 'src/app/interfaces/session';
+import { Submodule } from './submodule';
 
 
 @Component({
@@ -18,6 +19,7 @@ import { Session } from 'src/app/interfaces/session';
 })
 export class MainNavComponent implements OnInit, OnDestroy {
 
+  screenWidth: number;
   isNavbarCollapsed: boolean = true;
   isMenuHidden: boolean = false;
   modules: Array<Module> = [];
@@ -29,6 +31,7 @@ export class MainNavComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private persistenceService: PersistenceService, private securityService: SecurityService) { }
 
   ngOnInit() {
+    this.getScreenSize();
     this.moduleAccesor = this.securityService.setUserData().subscribe(user => {
       this.user = user;
       this.modules = this.buildMenu(user.modules);
@@ -41,6 +44,14 @@ export class MainNavComponent implements OnInit, OnDestroy {
 
   }
 
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+    this.screenWidth = window.innerWidth;
+    if(this.screenWidth <= 991) {
+      this.isMenuHidden = true;
+    }
+  }
+
   private buildMenu(permissions: Array<IModule>): Array<Module> {
     const modules: Array<Module> = [];
 
@@ -48,7 +59,7 @@ export class MainNavComponent implements OnInit, OnDestroy {
       let permission: IModule;
       if (permissions.some(p => {
         permission = p;
-        return p.id === module.id
+        return p.id === module.id;
       })) {
         module.submodules = module.submodules.filter(sm => {
           return permission.submodules.some(s => sm.id === s.id);
@@ -66,7 +77,7 @@ export class MainNavComponent implements OnInit, OnDestroy {
 
   public goto(module: Module) {
     this.modules.forEach(m => {
-      m.active = false;
+      m.opened = false;
     });
 
     module.submodules.some(sm => {
@@ -74,7 +85,7 @@ export class MainNavComponent implements OnInit, OnDestroy {
         this.router.navigate([sm.uri]);
         return true;
       }
-    })
+    });
   }
 
   public toggleMenu() {
@@ -91,6 +102,16 @@ export class MainNavComponent implements OnInit, OnDestroy {
   }
   public profile() {
     this.router.navigate(['administration/users/profile']);
+  }
+
+  public openModule(module: Module) {
+    module.opened = !module.opened;
+  }
+
+  public activate(submodule: Submodule) {
+    submodule.active = true;
+    this.router.navigate([submodule.uri]);
+    if (this.screenWidth <= 991) { this.isMenuHidden = !this.isMenuHidden; }
   }
 
 }

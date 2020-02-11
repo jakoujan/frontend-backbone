@@ -45,14 +45,14 @@
                     </ng-template>
                     <ng-template ngbPanelContent>
                         <div class="row submodule" *ngFor="let submodule of module.submodules">
-                            <div class="col-8">{{submodule.name}}</div>
-                            <div class="col-2">
+                            <div class="col-md-8 col-sm-4">{{submodule.name}}</div>
+                            <div class="col-md-2 col-sm-4">
                                 <div class="form-group form-check">
                                     <input type="checkbox" class="form-check-input" [(ngModel)]="submodule.access" id="access-{{submodule.name}}">
                                     <label class="form-check-label" for="access-{{submodule.name}}">Acceso</label>
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-md-2 col-sm-4">
                                 <div class="form-group form-check">
                                     <input type="checkbox" class="form-check-input" [(ngModel)]="submodule.write" id="write-{{submodule.name}}">
                                     <label class="form-check-label" for="write-{{submodule.name}}">Escritura</label>
